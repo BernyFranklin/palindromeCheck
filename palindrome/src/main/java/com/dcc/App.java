@@ -16,11 +16,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        String[] arr = {"code", "edoc", "da", "d"};
+        listOfPals(arr);
     }
 
     // Checks to see if palindrom
-    public static LinkedList<Integer> palindromeCheck(String[] words) {
+    public static LinkedList<Integer> listOfPals(String[] words) {
         // Create empty array for indecies
         LinkedList<Integer> listOfIndecies = new LinkedList<Integer>();
         // Iterate through list of words
@@ -41,7 +42,9 @@ public class App
                 // Send words to newWord()
                 String tempString = "";
                 tempString = newWord(words[i], words[j]);
-                System.out.println(tempString);
+                Boolean isPal = false;
+                isPal = isPalindrome(tempString);
+                System.out.println(isPal);
             }
         }
         return listOfIndecies;
@@ -52,5 +55,26 @@ public class App
         String temp = "";
         temp = wordOne + wordTwo;
         return temp;
+    }
+
+    // Check if palindrome
+    public static Boolean isPalindrome(String word) {
+        // Prime the var
+        Boolean isPalindrome = true;
+        // Make a reverse counter
+        int backCount = word.length() - 1;
+
+        // Iterate through letters in word
+        for (int i = 0; i < word.length(); i++) {
+            // If two indexed chars don't match, break and set flag
+            if (word.charAt(i) != word.charAt(backCount)) {
+                isPalindrome = false;
+                break;
+            }
+            // Decrement to the next letter back
+            backCount--;
+        }
+
+        return isPalindrome;
     }
 }
