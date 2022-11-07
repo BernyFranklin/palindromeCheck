@@ -16,14 +16,23 @@ public class App
 {
     public static void main( String[] args )
     {
+        // Input for prompt
         String[] arr = {"code", "edoc", "da", "d"};
-        listOfPals(arr);
+        // Create new list for output
+        LinkedList<Integer[]> finalList = new LinkedList<Integer[]>();
+        // Populate the list
+        finalList = listOfPals(arr);
+        // Display unique indecies
+        for (Integer[] elem: finalList ) {
+            System.out.printf("\n%d, %d", elem[0], elem[1]);
+        }
+        System.out.println();
     }
 
     // Checks to see if palindrom
-    public static LinkedList<Integer> listOfPals(String[] words) {
+    public static LinkedList<Integer[]> listOfPals(String[] words) {
         // Create empty array for indecies
-        LinkedList<Integer> listOfIndecies = new LinkedList<Integer>();
+        LinkedList<Integer[]> listOfIndecies = new LinkedList<Integer[]>();
         // Iterate through list of words
         for (int i = 0; i < words.length; i++) {
             // If out of bounds break
@@ -42,9 +51,18 @@ public class App
                 // Send words to newWord()
                 String tempString = "";
                 tempString = newWord(words[i], words[j]);
+                // Check is actual palindrome
                 Boolean isPal = false;
                 isPal = isPalindrome(tempString);
-                System.out.println(isPal);
+
+                // Send indecies to list
+                if (isPal) {
+                    // creates array of [i, j] and adds to list
+                    tempArr[0] = i;
+                    tempArr[1] = j;
+                    listOfIndecies.add(tempArr);
+                }
+                
             }
         }
         return listOfIndecies;
