@@ -3,7 +3,7 @@ package com.dcc;
 import java.util.LinkedList;
 
 /**
- * Given a lost of words, find all pairs of unique indices
+ * Given a list of words, find all pairs of unique indices
  * such that the concatenation of the two words is a 
  * palindrome.
  * 
@@ -22,6 +22,10 @@ public class App
         LinkedList<Integer[]> finalList = new LinkedList<Integer[]>();
         // Populate the list
         finalList = listOfPals(arr);
+
+        if(finalList.isEmpty()) {
+            System.out.println("No palindrome detected");
+        }
         // Display unique indecies
         for (Integer[] elem: finalList ) {
             System.out.printf("\n%d, %d", elem[0], elem[1]);
